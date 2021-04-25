@@ -1,0 +1,63 @@
+<div class="modal-header display-flex justify-content-space-between padding-all8">
+  <h4>Update Task Priority</h4>
+  <button mat-button class="background-transparent" (click)="closeModal()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div class="padding-all24">
+  <div
+    *ngIf="!blnAllListEmpty"
+    class="cdk-box"
+    style="display: flex; justify-content: space-between;"
+    cdkDropListGroup
+  >
+    <div
+      cdkDropList
+      #lowPriority="cdkDropList"
+      id="lowPriority"
+      class="cdk-drag-list display-flex flex-dir-col"
+      [cdkDropListData]="lowPriorityTaskList"
+      [cdkDropListConnectedTo]="[mediumPriority, highPriority]"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <span class="primary-bg padding-all8 text-center">Low</span>
+      <ng-container *ngFor="let item of lowPriorityTaskList">
+        <card cardType="basic-card-details" [data]="item" cdkDrag></card>
+      </ng-container>
+    </div>
+
+    <div
+      cdkDropList
+      #mediumPriority="cdkDropList"
+      id="mediumPriority"
+      class="cdk-drag-list display-flex flex-dir-col"
+      [cdkDropListData]="mediumPriorityTaskList"
+      [cdkDropListConnectedTo]="[lowPriority, highPriority]"
+      (cdkDropListDropped)="drop($event)"
+    >
+    <span class="primary-bg padding-all8 text-center">Medium</span>
+
+      <ng-container *ngFor="let item of mediumPriorityTaskList">
+        <card cardType="basic-card-details" [data]="item" cdkDrag></card>
+      </ng-container>
+    </div>
+
+    <div
+      cdkDropList
+      class="cdk-drag-list display-flex flex-dir-col"
+      #highPriority="cdkDropList"
+      id="highPriority"
+      [cdkDropListData]="highPriorityTaskList"
+      [cdkDropListConnectedTo]="[mediumPriority, lowPriority]"
+      (cdkDropListDropped)="drop($event)"
+    >
+    <span class="primary-bg padding-all8 text-center">High</span>
+
+      <ng-container *ngFor="let item of highPriorityTaskList">
+        <card cardType="basic-card-details" [data]="item" cdkDrag></card>
+      </ng-container>
+    </div>
+  </div>
+
+  <div *ngIf="blnAllListEmpty">Tasks list empty...</div>
+</div>

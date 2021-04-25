@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/pink-bluegrey.css';
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+
+@import 'src/assets/styles/local/layout.scss';
+@import 'src/assets/styles/local/box.scss';
+@import 'src/assets/styles/local/custom.scss';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

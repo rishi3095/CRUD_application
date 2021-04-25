@@ -1,0 +1,22 @@
+<div>
+  <div class="modalHeader"></div>
+  <div class="mat-h2 padding-side16">
+    <div mat-dialog-title>
+      {{ data?.title }}
+    </div>
+  </div>
+
+  <mat-dialog-actions class="padding-side16 justify-flex-end">
+    <ng-container *ngFor="let btn of data?.buttons">
+      <button
+        mat-raised-button
+        [color]="btn.color"
+        [ngStyle]="{ 'width.rem': btn.width ? btn.width : 7 }"
+        [ngClass]="getClasses(btn.cssClass)"
+        (click)="onAction(btn.label)"
+      >
+        {{ btn.label }}
+      </button>
+    </ng-container>
+  </mat-dialog-actions>
+</div>

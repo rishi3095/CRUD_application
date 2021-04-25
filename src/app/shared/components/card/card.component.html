@@ -1,0 +1,48 @@
+<ng-container *ngIf="cardType == 'basic-card-details'">
+  <mat-card class="margin-bottom8">
+    <mat-card-content>
+      <div class="mat-h4 ellipsis">Task message: {{ data.message }}</div>
+      <div>Priority: {{ data.priority }} </div>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
+
+<ng-container *ngIf="cardType == 'adv-card-details'">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <span class="mat-h2">
+          {{ data.message }}
+        </span></mat-card-title
+      >
+    </mat-card-header>
+    <mat-card-content class="margin-left16">
+      <span class="mat-h3">Priority: </span
+      ><b>{{
+        data.priority == 1 ? "Low" : data.priority == 2 ? "Medium" : "High"
+      }}</b><br />
+      <span class="mat-h3"
+        >Task due date: <b>{{ data.due_date }}</b></span
+      > <br>
+      <span class="mat-h3"
+        >Assigned To: <b>{{ data.assigned_name }}</b></span
+      >
+    </mat-card-content>
+    <mat-card-actions class="margin-left16">
+      <button
+        mat-mini-fab
+        class="primary-bg text-white margin-right16"
+        (click)="onUpdateTask(data)"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button
+        mat-mini-fab
+        color="warn"
+        (click)="onDeleteTask(data.id, data.message)"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>

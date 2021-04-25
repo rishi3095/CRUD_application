@@ -1,0 +1,162 @@
+<div class="modal-header display-flex justify-content-space-between padding-all8">
+  <h4>{{data.type == 'createTask' ? 'Create Task' : 'Update Task'}}</h4>
+  <button mat-button class="background-transparent" (click)="closeModal()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div class="padding-all24">
+  <form
+    *ngIf="data.type == 'createTask'"
+    [formGroup]="createTaskForm"
+    (ngSubmit)="onCreateTask()"
+    class="display-flex flex-dir-col"
+  >
+    <mat-form-field>
+      <mat-label>Message</mat-label>
+      <input type="text" matInput formControlName="message" />
+      <mat-error
+        *ngIf="
+          createTaskForm.get('message').errors &&
+          (createTaskForm.get('message').errors['required'] ||
+            createTaskForm.get('message').errors['emptyValue'])
+        "
+        >Message is required</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Due Time</mat-label>
+      <input
+        type="datetime"
+        matInput
+        formControlName="due_date"
+        [owlDateTimeTrigger]="dt"
+        [owlDateTime]="dt"
+      />
+      <owl-date-time #dt></owl-date-time>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Priority</mat-label>
+      <mat-select formControlName="priority">
+        <mat-option [value]="1"> Low </mat-option>
+        <mat-option [value]="2"> Medium </mat-option>
+        <mat-option [value]="3"> High </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          createTaskForm.get('priority').errors &&
+          (createTaskForm.get('priority').errors['required'] ||
+            createTaskForm.get('priority').errors['emptyValue'])
+        "
+        >Priority is required</mat-error
+      >
+      <mat-error
+        *ngIf="
+          createTaskForm.get('priority').hasError('max') ||
+          createTaskForm.get('priority').hasError('min')
+        "
+      >
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Assigned to</mat-label>
+      <mat-select formControlName="assigned_to">
+        <mat-option *ngFor="let user of usersDataList" [value]="user.id">
+          {{ user.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          createTaskForm.get('assigned_to').errors &&
+          (createTaskForm.get('assigned_to').errors['required'] ||
+            createTaskForm.get('assigned_to').errors['emptyValue'])
+        "
+        >User is required</mat-error
+      >
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!createTaskForm.valid">
+      Create Task
+    </button>
+  </form>
+
+  <form
+    *ngIf="data.type == 'updateTask'"
+    [formGroup]="updateTaskForm"
+    (ngSubmit)="onUpdateTask()"
+    class="display-flex flex-dir-col"
+  >
+    <mat-form-field>
+      <mat-label>Message</mat-label>
+      <input type="text" matInput formControlName="message" />
+      <mat-error
+        *ngIf="
+          updateTaskForm.get('message').errors &&
+          (updateTaskForm.get('message').errors['required'] ||
+            updateTaskForm.get('message').errors['emptyValue'])
+        "
+        >Message is required</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Due Time</mat-label>
+      <input
+        type="datetime"
+        matInput
+        [(ngModel)]="selectedDueDate"
+        formControlName="due_date"
+        [owlDateTimeTrigger]="dt"
+        [owlDateTime]="dt"
+      />
+      <owl-date-time #dt></owl-date-time>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Priority</mat-label>
+      <mat-select formControlName="priority">
+        <mat-option [value]="1"> Low </mat-option>
+        <mat-option [value]="2"> Medium </mat-option>
+        <mat-option [value]="3"> High </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          updateTaskForm.get('priority').errors &&
+          (updateTaskForm.get('priority').errors['required'] ||
+            updateTaskForm.get('priority').errors['emptyValue'])
+        "
+        >Priority is required</mat-error
+      >
+      <mat-error
+        *ngIf="
+          updateTaskForm.get('priority').hasError('max') ||
+          updateTaskForm.get('priority').hasError('min')
+        "
+      >
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Assigned to</mat-label>
+      <mat-select formControlName="assigned_to">
+        <mat-option *ngFor="let user of usersDataList" [value]="user.id">
+          {{ user.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          updateTaskForm.get('assigned_to').errors &&
+          (updateTaskForm.get('assigned_to').errors['required'] ||
+            updateTaskForm.get('assigned_to').errors['emptyValue'])
+        "
+        >User is required</mat-error
+      >
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!updateTaskForm.valid && updateTaskForm.pristine">
+      Update Task
+    </button>
+  </form>
+</div>

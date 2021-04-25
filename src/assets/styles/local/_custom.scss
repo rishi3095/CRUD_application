@@ -1,0 +1,24 @@
+@import '../base/variables';
+@import '../base/mixins';
+.navbar {
+    @include background-color($primary-bg);
+    @include padding-top-side(0.5rem, 1rem);
+}
+
+.primary-bg {
+    @include background-color($primary-bg);
+}
+.background-transparent { @include background-color(transparent); }
+
+.text-white { color: #fff !important;}
+.text-center { text-align: center !important;}
+.mat-dialog-container { padding: unset !important;}
+
+.ellipsis {
+    width: 240px;
+    overflow: hidden;
+    word-break: break-all;
+    -webkit-line-clamp: 2;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

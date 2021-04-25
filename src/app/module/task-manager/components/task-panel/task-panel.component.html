@@ -1,0 +1,49 @@
+<nav id="header" class="display-flex justify-content-space-between navbar">
+  <div class="display-flex">
+    <button mat-button (click)="openCreateTask()">
+      <mat-icon>add_circle</mat-icon> &nbsp; Create task
+    </button>
+    <button mat-button (click)="openUpdatePriority()">
+      <mat-icon>mode_edit</mat-icon>
+      Update Task Priority
+    </button>
+  </div>
+  <div>
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>filter_alt</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button
+        [ngClass]="{ 'primary-bg': blnSortByPriority }"
+        mat-menu-item
+        (click)="sortByPriority()"
+      >
+        By Priority
+      </button>
+      <button
+        [ngClass]="{ 'primary-bg': blnSortByDueDate }"
+        mat-menu-item
+        (click)="sortByDueDate()"
+      >
+        By Due Date
+      </button>
+    </mat-menu>
+    &nbsp;
+    <searchbar
+      [searchWord]="searchWord"
+      (searchCriteria)="searchThis($event)"
+    ></searchbar>
+  </div>
+</nav>
+<div class="padding-side40 padding-bottom16">
+  <ng-container *ngFor="let task of tasksList.tasks">
+    <div class="margin-top16 margin-bottom16">
+      <card
+        [data]="task"
+        cardType="adv-card-details"
+        (onDelete)="onDeleteTask($event)"
+        (onUpdate)="onUpdateTask($event)"
+      ></card>
+    </div>
+  </ng-container>
+</div>

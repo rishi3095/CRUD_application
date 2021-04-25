@@ -1,0 +1,11 @@
+{
+    "/api": {
+        "target": "https://devza.com/tests/taskslist",
+        "secure":true,
+        "changeOrigin": true,
+        "logLevel": "error",
+        "pathRewrite": {
+            "^/api": ""
+        }
+    }
+}

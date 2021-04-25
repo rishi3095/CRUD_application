@@ -1,0 +1,13 @@
+@import '../base/mixins';
+.padding-side16 { @include padding-side(1rem, 1rem); }
+.padding-side40 { @include padding-side(2.5rem, 2.5rem); }
+.padding-all24 { @include padding-all(1.5rem); }
+.padding-all8 { @include padding-all(.5rem); }
+.padding-bottom16 { @include padding-bottom(1rem); }
+
+.margin-top16 { @include margin-top(1rem); }
+.margin-bottom8 { @include margin-bottom(0.5rem); }
+
+.margin-bottom16 { @include margin-bottom(1rem); }
+.margin-right16 { @include margin-right(1rem); }
+.margin-left16 { @include margin-left(1rem); }

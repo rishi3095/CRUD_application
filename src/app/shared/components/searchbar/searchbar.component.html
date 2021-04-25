@@ -1,0 +1,5 @@
+<mat-form-field appearance="outline">
+  <mat-label>Search</mat-label>
+  <input type="text" matInput [(ngModel)]="searchWord" (input)="searchThis()" />
+  <mat-icon matSuffix>manage_search</mat-icon>
+</mat-form-field>

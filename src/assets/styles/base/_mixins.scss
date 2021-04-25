@@ -1,0 +1,36 @@
+@mixin padding-all($all) {
+  padding: $all !important;
+}
+
+@mixin padding-side($left, $right) {
+  padding-left: $left !important;
+  padding-right: $right !important;
+}
+
+@mixin padding-top-side($top, $side) {
+  padding: $top $side !important;
+}
+
+@mixin padding-bottom($bottom) {
+  padding-bottom: $bottom !important;
+}
+
+@mixin margin-top($top) {
+  margin-top: $top !important;
+}
+
+@mixin margin-bottom($bottom) {
+  margin-bottom: $bottom !important;
+}
+
+@mixin margin-right($right) {
+  margin-right: $right !important;
+}
+
+@mixin margin-left($left) {
+  margin-left: $left !important;
+}
+
+@mixin background-color($color) {
+  background-color: $color !important;
+}
